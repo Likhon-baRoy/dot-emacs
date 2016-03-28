@@ -17,7 +17,6 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(android-mode-sdk-dir "/opt/android")
- '(el-get-git-shallow-clone t)
  '(grep-command "grep --color -nH -r -e ")
  '(inhibit-startup-screen t)
  '(safe-local-variable-values
