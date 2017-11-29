@@ -247,6 +247,13 @@
      (global-set-key (kbd "S-<mouse-4>") 'bm-previous-mouse)
    #+END_SRC
 
+** killing group
+*** paste
+
+    #+BEGIN_SRC emacs-lisp
+      (global-set-key [(control v)] 'yank)
+    #+END_SRC
+
 * PROGRAMMING
 
   some of the basic things provide by *emacs* internal packages.
