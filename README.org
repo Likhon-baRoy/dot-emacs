@@ -165,6 +165,22 @@
      (global-set-key (kbd "C-S-<mouse-1>") 'mc/add-cursor-on-click)
    #+END_SRC
 
+** line-number
+
+   I used multiple [[https://www.emacswiki.org/emacs/LineNumbers][line-number]] plugins over years now, but *linum*
+   give lots of flicker, now using with *nlinum* which is quite good.
+
+   #+BEGIN_SRC emacs-lisp
+     (require 'nlinum)
+
+     (setq nlinum-delay t)
+     (setq nlinum-highlight-current-line t)
+     (setq nlinum-format " %4d ")
+
+     (add-hook 'prog-mode-hook 'nlinum-mode)
+     (add-hook 'org-mode-hook 'nlinum-mode)
+   #+END_SRC
+
 * UX
 ** yes-or-no
 
