@@ -127,6 +127,31 @@
     explain in el-get [[https://github.com/dimitri/el-get#replicating-a-package-set-on-another-emacs-installation][README]].
 
 * UI
+** line-number
+
+   Choosing different [[https://www.emacswiki.org/emacs/LineNumbers][line number]] plugins over 5 years, [[https://github.com/thefrontside/frontmacs/blob/master/frontmacs-windowing.el][frontmacs]]
+   config actually got it right on that looks great, but *linum* give
+   lots of flicker, now experimenting with *nlinum*.
+
+   #+HEADER: :results silent
+   #+BEGIN_SRC emacs-lisp
+     (require 'nlinum)
+
+     (setq nlinum-delay t)
+     (setq nlinum-highlight-current-line t)
+     (setq nlinum-format " %4d ")
+
+     (add-hook 'prog-mode-hook 'nlinum-mode)
+     (add-hook 'org-mode-hook 'nlinum-mode)
+   #+END_SRC
+
+** initial-screen
+
+   #+BEGIN_SRC emacs-lisp
+     (setq inhibit-startup-message t)
+     (setq inhibit-splash-screen t)
+   #+END_SRC
+
 ** search
 *** anzu
 
@@ -152,17 +177,6 @@
    #+BEGIN_SRC emacs-lisp
      (setq speedbar-show-unknown-files t)
      (global-set-key [f9] 'speedbar)
-   #+END_SRC
-
-** [[https://github.com/magnars/multiple-cursors.el][multiple cursor]]
-
-   if [[https://www.sublimetext.com/][sublime]] can have multiple selections, *emacs* can too..
-
-   Here is [[https://youtu.be/jNa3axo40qM][video]] from [[http://emacsrocks.com/][Emacs Rocks!]] about it in [[http://emacsrocks.com/e13.html][ep13]].
-
-   #+BEGIN_SRC emacs-lisp
-     (require 'multiple-cursors)
-     (global-set-key (kbd "C-S-<mouse-1>") 'mc/add-cursor-on-click)
    #+END_SRC
 
 ** line-number
@@ -209,6 +223,42 @@
      ;;(setq auto-revert-verbose nil)
    #+END_SRC
 
+   these are kind of strange bindings for beginner and for me too, so
+   lets remove it
+
+   #+BEGIN_SRC emacs-lisp
+     (global-unset-key [(control prior)])
+     (global-unset-key [(control next)])
+   #+END_SRC
+
+   I find these binding quite handful.
+
+   #+BEGIN_SRC emacs-lisp
+     (global-set-key (kbd "<f5>") 'redraw-display)
+     (global-set-key [(control f5)] '(lambda() (interactive)
+                                     (load-file "~/.emacs.d/init.el")))
+   #+END_SRC
+
+*** word-wrap
+
+    #+BEGIN_SRC emacs-lisp
+      (global-set-key [f6] 'toggle-truncate-lines)
+    #+END_SRC
+
+*** window
+
+    Just a personal preference to not to have tool-bar, menu-bar, and
+    scroll-bar, take the buffer workspace, so lets hide it and also set
+    some handy key to toggle it.
+
+    #+BEGIN_SRC emacs-lisp
+      (defun toggle-bars-view()
+        (interactive)
+        (if tool-bar-mode (tool-bar-mode 0) (tool-bar-mode 1))
+        (if menu-bar-mode (menu-bar-mode 0) (menu-bar-mode 1)))
+      (global-set-key [f12] 'toggle-bars-view)
+    #+END_SRC
+
 ** undo
 *** undo-tree
 
@@ -243,6 +293,21 @@
 
       (dim-minor-name 'beacon-mode "")
       (beacon-mode t)
+    #+END_SRC
+
+*** multiple-cursor
+
+    If [[https://www.sublimetext.com/][sublime]] can have [[https://github.com/magnars/multiple-cursors.el][multiple]] cursor, *emacs* can too.
+
+    Here is 📹 [[https://youtu.be/jNa3axo40qM][video]] from [[http://emacsrocks.com/][Emacs Rocks!]] about it in [[http://emacsrocks.com/e13.html][ep13]].
+
+    #+BEGIN_SRC emacs-lisp
+      (require 'multiple-cursors)
+      (global-set-key (kbd "C-S-<mouse-1>") 'mc/add-cursor-on-click)
+
+      (global-set-key (kbd "C-S-<mouse-4>") 'mc/mark-previous-like-this)
+      (global-set-key (kbd "C-S-<mouse-5>") 'mc/mark-next-like-this)
+      (global-set-key (kbd "C-S-<mouse-2>") 'mc/mark-all-like-this)
     #+END_SRC
 
 ** selection
