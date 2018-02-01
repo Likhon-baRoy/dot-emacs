@@ -451,6 +451,15 @@
      (add-hook 'prog-mode-hook 'watch-words)
    #+END_SRC
 
+** indentation
+
+   Sorry [[http://silicon-valley.wikia.com/wiki/Richard_Hendrix][Richard]] no tabs here!
+
+   #+BEGIN_SRC emacs-lisp
+     (setq-default indent-tabs-mode nil)
+     (setq-default tab-width 4)
+   #+END_SRC
+
 ** white-spaces
 
    #+BEGIN_SRC emacs-lisp
