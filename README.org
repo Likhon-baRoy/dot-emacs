@@ -885,9 +885,13 @@
    Goodies for 🐳 🐳 🐳
 
    #+BEGIN_SRC emacs-lisp :tangle no
+     (el-get 'sync 's)
+     (el-get 'sync 'dockerfile-mode)
      (require 'dockerfile-mode)
      (add-to-list 'auto-mode-alist '("Dockerfile" . dockerfile-mode))
    #+END_SRC
+
+   *<2018-04-30>* dockerfile-mode seem to be missing =s= dependencies
 
 ** json
 
