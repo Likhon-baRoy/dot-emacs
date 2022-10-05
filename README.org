@@ -1026,19 +1026,31 @@
     one of reasons might be constant flickering creation of helm
     temporary popup windows 🪟 which I don't like.
 
+    If you want to know more you can into helm [[https://tuhdo.github.io/helm-intro.html][intro]]
+
     #+BEGIN_SRC emacs-lisp
       (require 'helm)
-      (global-set-key (kbd "M-x") 'helm-M-x)
-      (global-set-key (kbd "C-x C-f") 'helm-find-files)
+      (helm-mode 1)
+      (dim-minor-name 'helm-mode "")
+
+      (setq helm-allow-mouse t)
+
+      (define-key global-map [remap list-buffers] 'helm-buffers-list)
+      (define-key global-map [remap execute-extended-command] 'helm-M-x)
+      (define-key global-map [remap find-file] 'helm-find-files)
+
+      (unless (boundp 'completion-in-region-function)
+        (define-key lisp-interaction-mode-map [remap completion-at-point] 'helm-lisp-completion-at-point)
+        (define-key emacs-lisp-mode-map       [remap completion-at-point] 'helm-lisp-completion-at-point))
 
       ;;; I need arrow keys
       (customize-set-variable 'helm-ff-lynx-style-map t)
 
-      ;; terminal like tabs selection
+      ;;; terminal like tabs selection
       (define-key helm-map (kbd "<tab>") 'helm-next-line)
       (define-key helm-map (kbd "<backtab>") 'helm-previous-line)
 
-      ;; show command details
+      ;;; show command details
       (define-key helm-map (kbd "<right>") 'helm-execute-persistent-action)
       (define-key helm-map (kbd "<left>") 'helm-execute-persistent-action)
     #+END_SRC
