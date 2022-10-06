@@ -1061,13 +1061,11 @@
 
 *** orderless
 
-    [[helm]] is great, when *emacs* commands prompt for input in
-    *minibuffer* completion at point styles is does not look
-    appealing, [[https://github.com/oantolin/orderless][orderless]] completion style is rescue here divides the
-    pattern into space-separated components, and matches candidates
-    that match all of the components in any order.
+    If you are using [[helm]] matching space-separated component is
+    provided by default, which I only found out after trying [[https://github.com/oantolin/orderless][orderless]]
+    and its called "multi pattern matching" in helm.
 
-    #+BEGIN_SRC emacs-lisp
+    #+BEGIN_SRC emacs-lisp :tangle no
       (require 'orderless)
       (setq completion-styles '(orderless))
     #+END_SRC
